@@ -18,24 +18,17 @@ var interval = setInterval(function () {
 }, 1000)
 
 function cns(){
-    steyTime = new Date() - loadDate
+    steyTime += 1
+    console.log(steyTime)
     if (flag) {
         var timeNode = document.getElementById("stey")
-        var time = parseInt(steyTime / 1000, 10)
+        var time = parseInt(steyTime, 10)
         timeNode.innerHTML = `<div id="stey">滞在時間：${time}秒</div>`
     }
 }
 
-var intervalID = setInterval(cns, 1000)
-
-function is_visible() {
-    document.addEventListener("visibilitychange", () => {
-        if (document.hidden) {
-            clearInterval(intervalID)
-        } else {
-            setInterval(cns,1000)
-        }
-    })
-}
-
-setInterval(is_visible, 1000)
+var intervalID = setInterval(function(){
+    if(!document.hidden){
+        cns()
+    }
+}, 1000)
