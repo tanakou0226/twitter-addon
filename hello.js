@@ -3,6 +3,7 @@ var steyTime = 0
 
 var flag = false
 
+
 function showTime ()  {
     var HeaderNode = document.getElementsByClassName("css-1dbjc4n r-1awozwy r-1r5su4o r-e7q0ms")[0]
     if (!HeaderNode) return false;
@@ -25,4 +26,16 @@ function cns(){
     }
 }
 
-setInterval(cns, 1000)
+var intervalID = setInterval(cns, 1000)
+
+function is_visible() {
+    document.addEventListener("visibilitychange", () => {
+        if (document.hidden) {
+            clearInterval(intervalID)
+        } else {
+            setInterval(cns,1000)
+        }
+    })
+}
+
+setInterval(is_visible, 1000)
